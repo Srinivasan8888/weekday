@@ -53,20 +53,12 @@ function App() {
   }, []);
 
   const filteredJobs = jobs.filter(job => {
-    // Check if selectedRole is applied and job's jobRole is not null
     if (selectedRole && job.jobRole !== selectedRole.label) return false;
-
-    // Check if selectedExperience is applied and job's minExp or maxExp is not null
     if (selectedExperience && (job.minExp === null || job.maxExp === null || 
         (job.minExp > selectedExperience.label || job.maxExp < selectedExperience.label))) return false;
-
-    // Check if selectedSalary is applied and job's minJdSalary or maxJdSalary is not null
     if (selectedSalary && (job.minJdSalary === null || job.maxJdSalary === null || 
         (job.minJdSalary > selectedSalary.label || job.maxJdSalary < selectedSalary.label))) return false;
-
-    // Check if selectedLocation is applied and job's location is not null
     if (selectedLocation && job.location !== selectedLocation) return false;
-
     return true;
   });
 
