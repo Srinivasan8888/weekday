@@ -8,6 +8,8 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [location, setLocation] = useState('');
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,13 +56,18 @@ function App() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  const roleOptions = jobs.map(job => job.jobRole).filter(Boolean).map(role => ({ label: role, value: role }));
-  const experienceOptions = jobs
-    .flatMap(job => [job.minExp, job.maxExp])
-    .filter(exp => exp !== null && exp !== undefined)
-    .map(exp => ({ label: exp.toString(), value: exp.toString() }));
-  const salaryOptions = jobs
-    .flatMap(job => {
+  
+  const roleOptions = Array.from(new Set(jobs.map(job => job.jobRole).filter(Boolean)))
+  .sort()
+  .map(role => ({ label: role, value: role }));
+
+  const experienceOptions = Array.from(new Set(jobs.flatMap(job => [job.minExp, job.maxExp])
+  .filter(exp => exp !== null && exp !== undefined)
+  .map(exp => exp.toString())))
+  .sort((a, b) => a - b)
+  .map(exp => ({ label: exp, value: exp }));
+
+    const salaryOptions = Array.from(new Set(jobs.flatMap(job => {
       if (job.minJdSalary !== null && job.minJdSalary !== undefined && job.maxJdSalary !== null && job.maxJdSalary !== undefined) {
         return [
           { salary: job.minJdSalary, currency: job.salaryCurrencyCode },
@@ -68,9 +75,18 @@ function App() {
         ];
       }
       return [];
-    })
-    .map(s => ({ label: `${s.salary} ${s.currency}`, value: s.salary.toString() }));
-  const locationOptions = jobs.map(job => job.location).filter(Boolean).map(location => ({ label: location, value: location }));
+    }).map(s => JSON.stringify(s))))
+      .map(str => JSON.parse(str))
+      .sort((a, b) => a.salary - b.salary)
+      .map(s => ({ label: `${s.salary} ${s.currency}`, value: s.salary.toString() }));
+    
+    // const locationOptions = Array.from(new Set(jobs.map(job => job.location).filter(Boolean)))
+    // .sort()
+    // .map(location => ({ label: location, value: location }));
+  
+    const locationOptions = Array.from(new Set(jobs.map(job => job.location).filter(Boolean)))
+  .sort();
+
 
   return (
     <div className="App">
@@ -85,7 +101,18 @@ function App() {
           <Multiselect options={salaryOptions} displayValue="label" placeholder="Select Salary" />
         </div>
         <div className="filter-item">
-          <Multiselect options={locationOptions} displayValue="label" placeholder="Select Location" />
+          <input
+          type="text"
+          placeholder="Select Location"
+          list="location-list"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <datalist id="location-list">
+          {locationOptions.map((loc, index) => (
+            <option key={index} value={loc} />
+          ))}
+        </datalist>
         </div>
       </div>
       <div className='cards'>
