@@ -1,0 +1,83 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ensures maximum space between items */
+    padding: 20px;
+    margin: auto;
+}
+
+.job-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 0 1 calc(24.3333% - 60px); /* Reduces card width and increases gap */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 650px;
+    margin: 40px 20px 20px 90px; /* Increases margin for larger gaps */
+}
+
+@media (max-width: 1200px) {
+    .job-card {
+        flex: 0 0 100%; /* Full width on smaller screens */
+        margin: 10px 0; /* Adjust margin for smaller screens */
+    }
+}
+
+
+
+.job-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.job-content h,
+.job-content h3,
+.job-content p {
+    margin: 0; 
+    padding: 0; 
+}
+
+
+.company-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.job-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.apply-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.apply-button:hover {
+    
+    background-color: #0077e6;
+}
