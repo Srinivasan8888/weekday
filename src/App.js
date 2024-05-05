@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Multiselect from 'multiselect-react-dropdown';
 import './App.css';
-import Topmenu from './component/Topmenu';
+import './component/css/topmenu.css';
 import Cards from './component/Cards';
 
 function App() {
@@ -54,24 +54,42 @@ function App() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  // Extract options
-  const salaryOptions = [...new Set(jobs.map(job => job.minJdSalary).filter(salary => salary !== null))];
-  const experienceOptions = [...new Set([...jobs.map(job => job.minExp), ...jobs.map(job => job.maxExp)].filter(exp => exp !== null))];
-  const roleOptions = [...new Set(jobs.map(job => job.jobRole))];
-  const locationOptions = [...new Set(jobs.map(job => job.location))];
-
-  // Filter out undefined values
-  const filteredSalaryOptions = salaryOptions.filter(option => option !== undefined);
-  const filteredExperienceOptions = experienceOptions.filter(option => option !== undefined);
-  const filteredRoleOptions = roleOptions.filter(option => option !== undefined);
-  const filteredLocationOptions = locationOptions.filter(option => option !== undefined);
+  const roleOptions = jobs.map(job => job.jobRole).filter(Boolean).map(role => ({ label: role, value: role }));
+  const experienceOptions = jobs
+    .flatMap(job => [job.minExp, job.maxExp])
+    .filter(exp => exp !== null && exp !== undefined)
+    .map(exp => ({ label: exp.toString(), value: exp.toString() }));
+  const salaryOptions = jobs
+    .flatMap(job => {
+      if (job.minJdSalary !== null && job.minJdSalary !== undefined && job.maxJdSalary !== null && job.maxJdSalary !== undefined) {
+        return [
+          { salary: job.minJdSalary, currency: job.salaryCurrencyCode },
+          { salary: job.maxJdSalary, currency: job.salaryCurrencyCode }
+        ];
+      }
+      return [];
+    })
+    .map(s => ({ label: `${s.salary} ${s.currency}`, value: s.salary.toString() }));
+  const locationOptions = jobs.map(job => job.location).filter(Boolean).map(location => ({ label: location, value: location }));
 
   return (
     <div className="App">
-      <Topmenu salaryOptions={filteredSalaryOptions} experienceOptions={filteredExperienceOptions} roleOptions={filteredRoleOptions} locationOptions={filteredLocationOptions} />
+      <div className="filter-bar">
+        <div className="filter-item">
+          <Multiselect options={roleOptions} displayValue="label" placeholder="Select Role" />
+        </div>
+        <div className="filter-item">
+          <Multiselect options={experienceOptions} displayValue="label" placeholder="Select Experience" />
+        </div>
+        <div className="filter-item">
+          <Multiselect options={salaryOptions} displayValue="label" placeholder="Select Salary" />
+        </div>
+        <div className="filter-item">
+          <Multiselect options={locationOptions} displayValue="label" placeholder="Select Location" />
+        </div>
+      </div>
       <div className='cards'>
-      <Cards jobs={jobs} />
+        <Cards jobs={jobs} />
       </div>
     </div>
   );
