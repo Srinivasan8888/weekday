@@ -97,6 +97,7 @@ function App() {
     .map(str => JSON.parse(str))
     .sort((a, b) => a.salary - b.salary)
     .map(s => ({ label: `${s.salary} ${s.currency}`, value: s.salary.toString() }));
+    
 
   const locationOptions = Array.from(new Set(jobs.map(job => job.location).filter(Boolean)))
     .sort();
@@ -126,7 +127,7 @@ function App() {
           <Multiselect
             options={salaryOptions}
             displayValue="label"
-            placeholder="Select Salary"
+            placeholder="Select Min Salary"
             onSelect={(selectedList) => setSelectedSalary(selectedList[0])}
             onRemove={() => setSelectedSalary(null)}
           />

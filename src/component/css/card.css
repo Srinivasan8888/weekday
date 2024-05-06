@@ -6,10 +6,25 @@
     margin: auto;
 }
 
+.time-ago {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-bottom: 11px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    width: 145px;
+}
+
+
 .job-card {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 25px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     flex: 0 1 calc(24.3333% - 60px); /* Reduces card width and increases gap */
@@ -33,22 +48,60 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
 .job-content {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
-.job-content h,
-.job-content h3,
+.job-role{
+
+    color: #282828;
+    font-weight: 500;
+    
+}
+.company-name{
+    color: #8c8c8c;
+    font-weight: 500;
+    font-size: 1.4em;
+}
+.job-location{
+    font-weight: 500;
+    color: #222222;
+    font-size: 1em;
+}
+
+
 .job-content p {
     margin: 0; 
     padding: 0; 
 }
 
+.About-us{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.About-company{
+    font-weight: 500;
+    font-size: 1.3em;
+}
+
+.About-dec{
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+}
+
+.About-dec p{
+    
+    margin: 4px 0px; 
+    padding: 1px; 
+}
 
 .company-logo {
     width: 40px;
@@ -58,26 +111,72 @@
 }
 
 .job-description {
-    font-size: 14px;
-    color: #666;
+    font-size: 1.2em;
+    color: #333333;
+    font-weight: 600;
 }
 
+.job-salary{
+    font-weight: 500;
+    font-size: 1.4em;
+    color: #666766;
+    margin: 1px;
+    
+}
+
+.job-years{
+    font-weight:600;
+    font-size: 1.3em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 .apply-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #54efc3;
+    color: black;
+    font-weight:600;
     border: none;
-    padding: 10px 0px;
+    padding: 10px 2px;
     text-align: center;
     text-decoration: none;
     display: block;
-    font-size: 1em;
+    font-size: 1.3em;
     margin: 10px 0;
     cursor: pointer;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 12px;
+    
 }
 
 .apply-button:hover {
+    
+    background-color: #0077e6;
+}
+
+
+.referral-button {
+    display: flex;
+    flex-direction: row;
+    background-color: #4943da;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    font-weight: medium;
+    padding: 10px 2px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.3em;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 100%;
+    gap: 10px;
+    border-radius: 12px;
+    
+}
+
+.referral-button:hover {
     
     background-color: #0077e6;
 }
