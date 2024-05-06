@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
-    margin: auto;
+    padding: 0px 10px 10px;
     width: 97%;
 }
 
@@ -49,6 +49,8 @@
         padding: 10px; 
     }
 }
+
+  
 
 .job-header {
     display: flex;

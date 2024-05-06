@@ -1,0 +1,25 @@
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.filter-item {
+  flex: 1 1 100%;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1181px) {
+  .filter-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f8f9fa;
+  }
+}
+
