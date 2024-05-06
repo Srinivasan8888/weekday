@@ -1,9 +1,10 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Ensures maximum space between items */
+    justify-content: space-between;
     padding: 20px;
     margin: auto;
+    width: 97%;
 }
 
 .time-ago {
@@ -27,22 +28,27 @@
     border-radius: 25px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    flex: 0 1 calc(24.3333% - 60px); /* Reduces card width and increases gap */
+    flex: 0 1 calc(24.3333% - 60px); 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     min-height: 650px;
-    margin: 40px 20px 20px 90px; /* Increases margin for larger gaps */
+    margin: 40px 20px 20px 90px;
 }
 
 @media (max-width: 1200px) {
     .job-card {
-        flex: 0 0 100%; /* Full width on smaller screens */
-        margin: 10px 0; /* Adjust margin for smaller screens */
+        flex: 0 0 100%; 
+        margin: 10px 0; 
     }
 }
 
-
+@media (max-width: 667px) {
+    .card-container {
+        justify-content: center; 
+        padding: 10px; 
+    }
+}
 
 .job-header {
     display: flex;

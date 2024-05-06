@@ -104,7 +104,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="filter-bar">
+      <div className="bar">
         <div className="filter-item">
           <Multiselect
             options={roleOptions}
